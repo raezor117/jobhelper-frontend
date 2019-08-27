@@ -7,17 +7,14 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
 } from 'react-native';
 
-import Login from './components/login/login';
+import LoginComponent from './components/security/login/login';
 
 export default class DemoLogin extends Component {
   render() {
     return (
-     <Login />
+     <LoginComponent />
     );
   }
 }

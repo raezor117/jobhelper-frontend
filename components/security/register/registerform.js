@@ -1,23 +1,19 @@
 //import liraries
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, 
     Alert, Button ,StyleSheet ,StatusBar, Keyboard } from 'react-native';
-
-const onButtonPress = () => {
-  Alert.alert('Button has been pressed!');
-  Keyboard.dismiss();
-};
-
+    import SecurityBaseComponent from '../../base/security.base';
 
 // create a component
-class LoginForm extends Component {
+export default class RegisterFormComponent extends SecurityBaseComponent {
     render() {
+        let self = this;
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content"/>
                 <TextInput style = {styles.input} 
                             autoCapitalize="none" 
-                            onSubmitEditing={() => this.passwordInput.focus()} 
+                            onSubmitEditing={() => self.passwordInput.focus()} 
                             autoCorrect={false} 
                             keyboardType='email-address' 
                             returnKeyType="next" 
@@ -25,20 +21,23 @@ class LoginForm extends Component {
                             placeholderTextColor='rgba(225,225,225,0.7)'/>
 
                 <TextInput style = {styles.input}   
-                           returnKeyType="go" ref={(input)=> this.passwordInput = input} 
+                           returnKeyType="go" ref={(input)=> self.passwordInput = input} 
                            placeholder='Password' 
                            placeholderTextColor='rgba(225,225,225,0.7)' 
                            secureTextEntry/>
-                 {/*   <Button onPress={onButtonPress} title = 'Login' style={styles.loginButton} /> */}
-                <TouchableOpacity style={styles.buttonContainer} onPress={onButtonPress}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={self.onButtonPress}>
                     <Text style={styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity> 
             </View>
         );
     }
+
+    onButtonPress = () => {
+        Alert.alert('Button has been pressed!');
+        Keyboard.dismiss();
+    };
 }
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
      padding: 30,
@@ -66,6 +65,3 @@ const styles = StyleSheet.create({
     }
    
 });
-
-//make this component available to the app
-export default LoginForm;
